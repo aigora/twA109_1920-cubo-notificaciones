@@ -28,3 +28,6 @@ Una vez conectados tanto el módulo como el dispositivo, se permitira el interca
 
 -Leds RGB
 Es como un led normal, pero trae los tres colores primarios (azul, verde y rojo) y dependiendo de la intensidad de corriente que se le suministre lucirán los tres colores con distintas intensidades para dar lugar a la gama cromática.
+## Bibliografía
+Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
+Módulo Bluethoot https://www.luisllamas.es/conectar-arduino-por-bluetooth-con-los-modulos-hc-05-o-hc-06/
