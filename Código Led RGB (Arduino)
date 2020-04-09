@@ -1,0 +1,18 @@
+
+    int pinR = 6;
+    int pinG = 5;
+    int pinB = 3;
+    //Se utilizan pines compatibles con señales PWM
+
+    void setup(){
+        pinMode(pinR,OUTPUT); // Es el pin que dará la intensidad al color rojo (Red)
+        pinMode(pinG,OUTPUT); // Es el pin que dará la intensidad al color verde (Green)
+        pinMode(pinB,OUTPUT); // Es el pin que dará la intensidad al color azul (Blue)
+    }
+
+    void loop(){
+        analogWrite(pinR, 0);
+        analogWrite(pinG, 0);
+        analogWrite(pinB, 0);
+    }
+    //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
