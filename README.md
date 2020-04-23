@@ -35,7 +35,7 @@ Vamos a utilizar dos funciones principalmente:
 
 -funcion_seleccion1 (botones predeterminados):
 
-El argumento que vamos a usar es un vector fila llamado "vector_color" que tendrá tres variables dentro. Cada variable (v_0,v_1,v_2) irá asignada a la intensidad de uno de los tres colores primarios del led.
+El argumento que vamos a usar es un vector fila llamado "vector_color" que tendrá tres variables dentro. Cada variable (vector_color[0],vector_color[1],vector_color[2]) irá asignada a la intensidad de uno de los tres colores primarios del led.
 El procesamiento consistirá en cambiar los datos del vector dependiendo del botón que el usuario pulse. Tendremos valores predeterminados para cada botón. Y, dependiendo de esos valores, lucirá un color u otro.
 La salida es el vector con los valores cambiados, listo para ser leido por los led.
 
