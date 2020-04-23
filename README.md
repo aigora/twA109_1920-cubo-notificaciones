@@ -45,6 +45,67 @@ Los argumentos de esta función son tres variables (s_r;s_v;s_b) que serán los 
 El procesamiento será la asignación de los valores de los "sliders" a sus variables correspondientes, dependiendo de la posición de estos. El valor de la variable irá de 0 a 255, siendo esto el rango de intensidad que puede tomar cada color del led.
 La salida será cada una de las variables con su valor.
 
+## Código (Incompleto)
+
+ #include <SoftwareSerial.h>
+
+    SoftwareSerial BT(10, 11);
+    int pinR = 6;
+    int pinG = 5;
+    int pinB = 3;
+
+    float s_r;
+    float s_v;
+    float s_b;
+
+    float vector_color[3];
+    //Se utilizan pines compatibles con señales PWM
+
+    void setup(){
+      BT.begin(9600);
+      Serial.begin(9600);
+      
+        pinMode(pinR,OUTPUT); // Es el pin que dará la intensidad al color rojo (Red)
+        
+        pinMode(pinG,OUTPUT); // Es el pin que dará la intensidad al color verde (Green)
+        
+        pinMode(pinB,OUTPUT); // Es el pin que dará la intensidad al color azul (Blue)
+    }
+//Código del slider
+
+void loop(){
+
+   while(BT.available())
+   
+      {
+      
+        float s_r = BT.parseInt();
+        
+        float s_v = BT.parseInt();
+        
+        float s_b = BT.parseInt();
+        
+      }
+      
+   if (BT.read()=='\n')
+      {
+      
+        analogWrite(pinR, s_r);
+        
+        analogWrite(pinG, s_v);
+        
+        analogWrite(pinB, s_b);
+      }
+
+
+        analogWrite(pinR, vector_color[0]);
+        
+        analogWrite(pinG, vector_color[1]);
+        
+        analogWrite(pinB, vector_color[2]);
+        
+    }    
+    //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
 
