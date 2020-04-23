@@ -28,6 +28,23 @@ Una vez conectados tanto el módulo como el dispositivo, se permitira el interca
 
 -Leds RGB
 Es como un led normal, pero trae los tres colores primarios (azul, verde y rojo) y dependiendo de la intensidad de corriente que se le suministre lucirán los tres colores con distintas intensidades para dar lugar a la gama cromática.
+
+## Identificar subprogramas
+
+Vamos a utilizar dos funciones principalmente:
+
+-funcion_seleccion1 (botones predeterminados):
+
+El argumento que vamos a usar es un vector fila llamado "vector_color" que tendrá tres variables dentro. Cada variable (v_0,v_1,v_2) irá asignada a la intensidad de uno de los tres colores primarios del led.
+El procesamiento consistirá en cambiar los datos del vector dependiendo del botón que el usuario pulse. Tendremos valores predeterminados para cada botón. Y, dependiendo de esos valores, lucirá un color u otro.
+La salida es el vector con los valores cambiados, listo para ser leido por los led.
+
+-funcion_seleccion2 (sliders):
+
+Los argumentos de esta función son tres variables (s_r;s_v;s_b) que serán los sliders. Cada variable irá asignada a un "slider", en total habrá tres y cada uno representará un color.
+El procesamiento será la asignación de los valores de los "sliders" a sus variables correspondientes, dependiendo de la posición de estos. El valor de la variable irá de 0 a 255, siendo esto el rango de intensidad que puede tomar cada color del led.
+La salida será cada una de las variables con su valor.
+
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
 
