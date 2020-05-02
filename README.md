@@ -122,7 +122,8 @@ else if (pagina 1){
     
     
     
-    
+  (https://github.com/aigora/twA109_1920-cubo-notificaciones/blob/master/Bloques_Pantalla_Principal.png)
+  
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
 
