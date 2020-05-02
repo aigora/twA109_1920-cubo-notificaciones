@@ -66,45 +66,45 @@ La salida será cada una de las variables con su valor.
       Serial.begin(9600);
       
         pinMode(pinR,OUTPUT); // Es el pin que dará la intensidad al color rojo (Red)
-        
         pinMode(pinG,OUTPUT); // Es el pin que dará la intensidad al color verde (Green)
-        
         pinMode(pinB,OUTPUT); // Es el pin que dará la intensidad al color azul (Blue)
     }
-//Código del slider
+//Código del slider y del botón
 
 void loop(){
 
+if (pagina 2){
+  
    while(BT.available())
-   
       {
-      
         float s_r = BT.parseInt();
-        
         float s_v = BT.parseInt();
-        
         float s_b = BT.parseInt();
-        
       }
-      
    if (BT.read()=='\n')
       {
-      
         analogWrite(pinR, s_r);
-        
         analogWrite(pinG, s_v);
-        
         analogWrite(pinB, s_b);
       }
+}
+else if (pagina 1){
+  
 
-
-        analogWrite(pinR, vector_color[0]);
-        
-        analogWrite(pinG, vector_color[1]);
-        
-        analogWrite(pinB, vector_color[2]);
-        
-    }    
+      while(BT.available())
+  {
+    vector_color[0] = BT.parseInt();
+    vector_color[1] = BT.parseInt();
+    vector_color[2] = BT.parseInt();
+  }
+  
+  if (BT.read()=='\n')
+  {
+    analogWrite(pinR, vector_color[0]);
+    analogWrite(pinG, vector_color[1]);
+    analogWrite(pinB, vector_color[2]);
+  }
+}
     //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
