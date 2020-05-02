@@ -119,6 +119,10 @@ else if (pagina 1){
   
 }
     //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
+    
+    
+    
+    
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
 
