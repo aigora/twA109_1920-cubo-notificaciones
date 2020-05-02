@@ -73,37 +73,50 @@ La salida será cada una de las variables con su valor.
 
 void loop(){
 
-if (pagina 2){
+if (pagina 2)
+{
   
    while(BT.available())
+   
       {
         float s_r = BT.parseInt();
         float s_v = BT.parseInt();
         float s_b = BT.parseInt();
       }
+      
    if (BT.read()=='\n')
+   
       {
         analogWrite(pinR, s_r);
         analogWrite(pinG, s_v);
         analogWrite(pinB, s_b);
       }
 }
+
 else if (pagina 1){
   
 
       while(BT.available())
+      
   {
+  
     vector_color[0] = BT.parseInt();
     vector_color[1] = BT.parseInt();
     vector_color[2] = BT.parseInt();
+    
   }
   
+  
   if (BT.read()=='\n')
+  
   {
+  
     analogWrite(pinR, vector_color[0]);
     analogWrite(pinG, vector_color[1]);
     analogWrite(pinB, vector_color[2]);
+    
   }
+  
 }
     //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
 ## Bibliografía
