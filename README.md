@@ -47,7 +47,7 @@ El argumento que vamos a usar en esta función es una estructura de datos, forma
 El procesamiento será leer el botón que se está pulsando en ese momento y, tras eso, mandar la información de cada color predeterminado a los led para que la lean.
 La salida será la estructura de datos con los valores de sus variables modificados.
 
-## Código (Incompleto)
+## Código 
 
 #include <SoftwareSerial.h>
 
