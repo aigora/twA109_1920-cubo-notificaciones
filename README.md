@@ -19,7 +19,7 @@ Comprender cómo funcionan los led RGB.
  
  ### Fundamento Teórico
 
--Módulo Bluethooot (HC-05)
+-Módulo Bluethooot (HC-06)
  Primero tendremos que emparejar el módulo con nuestro dispositivo. El proceso de emparejado depende del sistema operativo.
 
 Para establecer la comunicación desde el dispositivo, podemos usar el propio Serial Monitor del Arduino IDE.
@@ -33,34 +33,52 @@ Es como un led normal, pero trae los tres colores primarios (azul, verde y rojo)
 
 Vamos a utilizar dos funciones principalmente:
 
--funcion_seleccion1 (botones predeterminados):
+-funcion_seleccion1 (sliders):
 
-El argumento que vamos a usar es un vector fila llamado "vector_color" que tendrá tres variables dentro. Cada variable (vector_color[0],vector_color[1],vector_color[2]) irá asignada a la intensidad de uno de los tres colores primarios del led.
-El procesamiento consistirá en cambiar los datos del vector dependiendo del botón que el usuario pulse. Tendremos valores predeterminados para cada botón. Y, dependiendo de esos valores, lucirá un color u otro.
-La salida es el vector con los valores cambiados, listo para ser leido por los led.
-
--funcion_seleccion2 (sliders):
-
-Los argumentos de esta función son tres variables (s_r;s_v;s_b) que serán los sliders. Cada variable irá asignada a un "slider", en total habrá tres y cada uno representará un color.
+El argumento que vamos a usar es un vector fila de tipo int llamado "vector_color" que tendrá tres variables dentro. Cada variable (vector_color[0],vector_color[1],vector_color[2]) irá asignada a la intensidad de uno de los tres colores primarios del led.
 El procesamiento será la asignación de los valores de los "sliders" a sus variables correspondientes, dependiendo de la posición de estos. El valor de la variable irá de 0 a 255, siendo esto el rango de intensidad que puede tomar cada color del led.
 La salida será cada una de las variables con su valor.
 
+La salida es el vector con los valores cambiados, listo para ser leido por los led.
+
+-funcion_seleccion2 (botones predeterminados):
+
+El argumento que vamos a usar en esta función es una estructura de datos, formada por tres variables de tipo int. Cada variable irá asignada a un color (Rojo, verde o azul).
+El procesamiento será leer el botón que se está pulsando en ese momento y, tras eso, mandar la información de cada color predeterminado a los led para que la lean.
+La salida será la estructura de datos con los valores de sus variables modificados.
+
 ## Código (Incompleto)
 
- #include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
 
-    SoftwareSerial BT(10, 11);
+    SoftwareSerial BT (9, 10);
+    
+    void botones(struct Colores *);
+
+    void sliders(float vector_color[]);
+    
     int pinR = 6;
     int pinG = 5;
     int pinB = 3;
-
-    float s_r;
-    float s_v;
-    float s_b;
-
-    float vector_color[3];
     //Se utilizan pines compatibles con señales PWM
-
+    
+    int x; //Será nuestra variable para controlar qué funcion usar
+    
+    struct Colores
+    {
+      int rojo;
+      int verde;
+      int azul;
+    }; //Se utiliza una estructura para los botones
+    
+  Colores c;
+    
+    /*float s_r;
+    float s_v;
+    float s_a;
+    */
+    int vector_color[3]; //Se utiliza un vector para los sliders
+    
     void setup(){
       BT.begin(9600);
       Serial.begin(9600);
@@ -69,56 +87,51 @@ La salida será cada una de las variables con su valor.
         pinMode(pinG,OUTPUT); // Es el pin que dará la intensidad al color verde (Green)
         pinMode(pinB,OUTPUT); // Es el pin que dará la intensidad al color azul (Blue)
     }
-//Código del slider y del botón
+
 
 void loop(){
-
-if (pagina 2)
-{
   
    while(BT.available())
-   
-      {
-        float s_r = BT.parseInt();
-        float s_v = BT.parseInt();
-        float s_b = BT.parseInt();
-      }
-      
-   if (BT.read()=='\n')
-   
-      {
-        analogWrite(pinR, s_r);
-        analogWrite(pinG, s_v);
-        analogWrite(pinB, s_b);
-      }
+{
+  x = BT.parseInt();
+  if (x=1)
+  {
+    sliders(vector_color);
+  }
+  if (x=2)
+  {
+  botones(&c);
+  }
+  }
+}    
+
+void botones (struct Colores * c)
+{
+    c->rojo = BT.parseInt();
+    c->verde = BT.parseInt();
+    c->azul = BT.parseInt();
+  
+  if (BT.read()=='\n')
+    {
+      analogWrite(pinR, c->rojo);
+      analogWrite(pinG, c->verde);
+      analogWrite(pinB, c->azul);
+    }
 }
 
-else if (pagina 1){
-  
-
-      while(BT.available())
-      
-  {
-  
+void sliders(int vector_color[])
+{
     vector_color[0] = BT.parseInt();
     vector_color[1] = BT.parseInt();
     vector_color[2] = BT.parseInt();
-    
-  }
-  
-  
-  if (BT.read()=='\n')
-  
-  {
-  
-    analogWrite(pinR, vector_color[0]);
-    analogWrite(pinG, vector_color[1]);
-    analogWrite(pinB, vector_color[2]);
-    
-  }
-  
-}
-    //En el void loop es donde variaremos las intensidades que salen por cada pin para cambiar de color
+
+    if (BT.read()=='\n')
+    {
+      analogWrite(pinR, vector_color[0]);
+      analogWrite(pinG, vector_color[1]);
+      analogWrite(pinB, vector_color[2]);
+    }
+} 
       
 ## Bibliografía
 Leds RGB https://ardubasic.wordpress.com/2014/04/08/led-rgb/
